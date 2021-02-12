@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite;
 
 namespace OpenIddicPractice.Server
 {
@@ -17,6 +19,38 @@ namespace OpenIddicPractice.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlite("Data Source=application.db");
+                options.UseOpenIddict();
+            });
+
+            services.AddOpenIddict()
+                .AddCore(options =>
+                {
+                    options.UseEntityFrameworkCore()
+                        .UseDbContext<ApplicationDbContext>();
+                })
+                .AddServer(options =>
+                {
+                    options.SetTokenEndpointUris("/connect/token");
+                    options.AllowClientCredentialsFlow();
+                    options.AddDevelopmentEncryptionCertificate()
+                        .AddDevelopmentSigningCertificate();
+
+                    options.UseAspNetCore()
+                        .EnableTokenEndpointPassthrough();
+
+                    options.DisableAccessTokenEncryption();
+                })
+                .AddValidation(options =>
+                {
+                    options.UseLocalServer();
+                    options.UseAspNetCore();
+                });
+
+            services.AddHostedService<Worker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,13 +63,16 @@ namespace OpenIddicPractice.Server
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(options =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                options.MapControllers();
+                options.MapDefaultControllerRoute();
             });
+
+            app.UseWelcomePage();
         }
     }
 }

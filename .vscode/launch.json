@@ -5,6 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "debug client server worker",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-client-server-worker",
+      "program": "${workspaceFolder}/Client.ServerWorker/bin/Debug/net5.0/OpenIddicPractice.Client.ServerWorker.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Client.ServerWorker",
+      "stopAtEntry": false,
+      "console": "externalTerminal"
+    },
+    {
       "name": "debug server",
       "type": "coreclr",
       "request": "launch",
