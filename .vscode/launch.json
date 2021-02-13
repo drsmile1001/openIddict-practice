@@ -6,26 +6,26 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-server",
-      "program": "${workspaceFolder}/Server/bin/Debug/net5.0/OpenIddicPractice.Server.dll",
+      "program": "${workspaceFolder}/OpenIddictPractice.Server/bin/Debug/net5.0/OpenIddictPractice.Server.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/Server",
+      "cwd": "${workspaceFolder}/OpenIddictPractice.Server",
       "stopAtEntry": false,
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Server/Views"
+        "/Views": "${workspaceFolder}/OpenIddictPractice.Server/Views"
       },
       "console": "externalTerminal"
     },
     {
-      "name": "debug client server worker",
+      "name": "debug client console",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build-client-server-worker",
-      "program": "${workspaceFolder}/Client.ServerWorker/bin/Debug/net5.0/OpenIddicPractice.Client.ServerWorker.dll",
+      "preLaunchTask": "build-client-console",
+      "program": "${workspaceFolder}/OpenIddictPractice.ClientConsole/bin/Debug/net5.0/OpenIddictPractice.ClientConsole.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/Client.ServerWorker",
+      "cwd": "${workspaceFolder}/OpenIddictPractice.ClientConsole",
       "stopAtEntry": false,
       "console": "externalTerminal"
     },

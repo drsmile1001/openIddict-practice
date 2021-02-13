@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-namespace OpenIddicPractice.Server
+namespace OpenIddictPractice.Server
 {
     public class ApplicationDbContext : DbContext
     {

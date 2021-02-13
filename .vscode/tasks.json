@@ -9,7 +9,7 @@
       "type": "shell",
       "args": [
         "build",
-        "${workspaceFolder}/Server/OpenIddicPractice.Server.csproj",
+        "${workspaceFolder}/OpenIddictPractice.Server/OpenIddictPractice.Server.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -20,12 +20,12 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "build-client-server-worker",
+      "label": "build-client-console",
       "command": "dotnet",
       "type": "shell",
       "args": [
         "build",
-        "${workspaceFolder}/Client.ServerWorker/OpenIddicPractice.Client.ServerWorker.csproj"
+        "${workspaceFolder}/OpenIddictPractice.ClientConsole/OpenIddictPractice.ClientConsole.csproj"
       ],
       "group": "build",
       "presentation": {

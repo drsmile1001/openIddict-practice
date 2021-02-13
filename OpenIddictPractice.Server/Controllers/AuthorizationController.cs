@@ -8,7 +8,7 @@ using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpenIddicPractice.Server.Controllers
+namespace OpenIddictPractice.Server.Controllers
 {
     public class AuthorizationController : Controller
     {

@@ -5,7 +5,7 @@ using OpenIddict.Abstractions;
 using OpenIddict.Validation.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpenIddicPractice.Server.Controllers
+namespace OpenIddictPractice.Server.Controllers
 {
     [Route("api")]
     public class ResourceController : Controller

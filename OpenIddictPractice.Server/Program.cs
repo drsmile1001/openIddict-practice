@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace OpenIddicPractice.Server
+namespace OpenIddictPractice.Server
 {
     public class Program
     {

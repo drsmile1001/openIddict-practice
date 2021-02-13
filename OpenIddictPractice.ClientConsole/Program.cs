@@ -7,7 +7,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenIddictPractice.Client.ServerWorker
+namespace OpenIddictPractice.ClientConsole
 {
     public class Program
     {

@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
 
-namespace OpenIddicPractice.Server
+namespace OpenIddictPractice.Server
 {
     public class Startup
     {

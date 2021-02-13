@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using OpenIddict.Abstractions;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpenIddicPractice.Server
+namespace OpenIddictPractice.Server
 {
     internal class Worker : IHostedService
     {
