@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIddicPractice.Server", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.ServerWorker", "Client.ServerWorker\OpenIddicPractice.Client.ServerWorker.csproj", "{F4FDDFED-0E68-4050-BD43-60E8B368BEEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIddictPractice.ResourceAPI", "OpenIddictPractice.ResourceAPI\OpenIddictPractice.ResourceAPI.csproj", "{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{F4FDDFED-0E68-4050-BD43-60E8B368BEEB}.Release|x64.Build.0 = Release|Any CPU
 		{F4FDDFED-0E68-4050-BD43-60E8B368BEEB}.Release|x86.ActiveCfg = Release|Any CPU
 		{F4FDDFED-0E68-4050-BD43-60E8B368BEEB}.Release|x86.Build.0 = Release|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Debug|x64.Build.0 = Debug|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Debug|x86.Build.0 = Debug|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Release|x64.ActiveCfg = Release|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Release|x64.Build.0 = Release|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B47C413-B193-4AE7-BD3F-B6AE8556E4C8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

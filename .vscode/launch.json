@@ -1,9 +1,23 @@
 {
-  // 使用 IntelliSense 以得知可用的屬性。
-  // 暫留以檢視現有屬性的描述。
-  // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    {
+      "name": "debug server",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-server",
+      "program": "${workspaceFolder}/Server/bin/Debug/net5.0/OpenIddicPractice.Server.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Server",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Server/Views"
+      },
+      "console": "externalTerminal"
+    },
     {
       "name": "debug client server worker",
       "type": "coreclr",
@@ -16,24 +30,19 @@
       "console": "externalTerminal"
     },
     {
-      "name": "debug server",
+      "name": "debug resource-api",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build-server",
-      "program": "${workspaceFolder}/Server/bin/Debug/net5.0/OpenIddicPractice.Server.dll",
+      "preLaunchTask": "build-resource-api",
+      "program": "${workspaceFolder}/OpenIddictPractice.ResourceAPI/bin/Debug/net5.0/OpenIddictPractice.ResourceAPI.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/Server",
+      "cwd": "${workspaceFolder}/OpenIddictPractice.ResourceAPI",
       "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
       "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5002/"
       },
-      "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Server/Views"
-      }
+      "console": "externalTerminal"
     }
   ]
 }
