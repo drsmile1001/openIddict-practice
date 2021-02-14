@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenIddict.Abstractions;
+using OpenIddictPractice.Server.Entities;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace OpenIddictPractice.Server

@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
+using OpenIddictPractice.Server.Entities;
+using Microsoft.AspNetCore.Identity;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace OpenIddictPractice.Server
 {
@@ -24,6 +27,17 @@ namespace OpenIddictPractice.Server
                 options.UseOpenIddict();
             });
 
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.ClaimsIdentity.UserNameClaimType = Claims.Name;
+                options.ClaimsIdentity.UserIdClaimType = Claims.Subject;
+                options.ClaimsIdentity.RoleClaimType = Claims.Role;
+            });
+
             services.AddOpenIddict()
                 .AddCore(options =>
                 {
@@ -32,12 +46,20 @@ namespace OpenIddictPractice.Server
                 })
                 .AddServer(options =>
                 {
-                    options.SetTokenEndpointUris("/connect/token");
-                    options.AllowClientCredentialsFlow();
+                    options.SetAuthorizationEndpointUris("/connect/authorize")
+                        .SetTokenEndpointUris("/connect/token");
+
+                    options.AllowClientCredentialsFlow()
+                        .AllowAuthorizationCodeFlow();
+
+                    options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles);
+
                     options.AddDevelopmentEncryptionCertificate()
                         .AddDevelopmentSigningCertificate();
 
                     options.UseAspNetCore()
+                        .EnableStatusCodePagesIntegration()
+                        .EnableAuthorizationEndpointPassthrough()
                         .EnableTokenEndpointPassthrough();
 
                     options.DisableAccessTokenEncryption();
