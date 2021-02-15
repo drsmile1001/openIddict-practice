@@ -53,5 +53,13 @@ namespace OpenIddictPractice.Server.Controllers
             else
                 return RedirectToAction(nameof(HomeController.Index), "Home");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogOff()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
     }
 }

@@ -6,7 +6,6 @@ namespace OpenIddictPractice.Server.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["User"] = User.Identity?.Name;
             return View();
         }
     }

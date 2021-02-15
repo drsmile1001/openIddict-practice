@@ -1,3 +1,8 @@
+@using Microsoft.AspNetCore.Identity
+@using OpenIddictPractice.Server.Entities
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 <!DOCTYPE html>
 <html>
 
@@ -10,14 +15,18 @@
 
 <body>
     <h1>Home</h1>
-    @if (ViewData["User"] != null)
+    @if (SignInManager.IsSignedIn(User))
     {
-        <h2>Logged in. Wellcome @(ViewData["User"])!</h2>
+        <h2>Logged in! Wellcome @UserManager.GetUserName(User)!</h2>
+        <form asp-controller="Account" asp-action="LogOff" method="POST">
+            <button type="submit">Log off</button>
+        </form>
     }
     else
     {
-        <h2>Wellcome!</h2>
+        <a asp-controller="Account" asp-action="Login">Log in</a>
     }
+
 </body>
 
 </html>
