@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenIddict.Abstractions;
@@ -40,6 +42,15 @@ namespace OpenIddictPractice.Server
                         Permissions.GrantTypes.ClientCredentials
                     }
                 });
+            }
+
+            if (!context.Users.Any())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                var userAdmin = new ApplicationUser { UserName = "admin" };
+                var createAdminResult = await userManager.CreateAsync(userAdmin, "password");
+                if (!createAdminResult.Succeeded)
+                    Serilog.Log.Warning("建立 Admin 失敗", createAdminResult.Errors);
             }
         }
 

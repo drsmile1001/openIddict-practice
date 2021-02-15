@@ -9,7 +9,15 @@
 </head>
 
 <body>
-    <h1>This is Home</h1>
+    <h1>Home</h1>
+    @if (ViewData["User"] != null)
+    {
+        <h2>Logged in. Wellcome @(ViewData["User"])!</h2>
+    }
+    else
+    {
+        <h2>Wellcome!</h2>
+    }
 </body>
 
 </html>
