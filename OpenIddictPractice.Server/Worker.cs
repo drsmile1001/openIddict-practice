@@ -80,6 +80,42 @@ namespace OpenIddictPractice.Server
                 });
             }
 
+            if (await manager.FindByClientIdAsync("vue-client") is null)
+            {
+                await manager.CreateAsync(new OpenIddictApplicationDescriptor
+                {
+                    ClientId = "vue-client",
+                    ConsentType = ConsentTypes.Explicit,
+                    DisplayName = "vue client PKCE",
+                    PostLogoutRedirectUris =
+                    {
+                        new Uri("http://localhost:8080")
+                    },
+                    RedirectUris =
+                    {
+                        new Uri("http://localhost:8080/callback.html")
+                    },
+                    Permissions =
+                    {
+                        Permissions.Endpoints.Authorization,
+                        Permissions.Endpoints.Logout,
+                        Permissions.Endpoints.Token,
+                        Permissions.Endpoints.Revocation,
+                        Permissions.GrantTypes.AuthorizationCode,
+                        Permissions.GrantTypes.RefreshToken,
+                        Permissions.ResponseTypes.Code,
+                        Permissions.Scopes.Email,
+                        Permissions.Scopes.Profile,
+                        Permissions.Scopes.Roles,
+                        Permissions.Prefixes.Scope + "dataEventRecords"
+                    },
+                    Requirements =
+                    {
+                        Requirements.Features.ProofKeyForCodeExchange
+                    }
+                });
+            }
+
             if (await manager.FindByClientIdAsync("debbuger", cancellationToken) == null)
             {
                 var descriptor = new OpenIddictApplicationDescriptor

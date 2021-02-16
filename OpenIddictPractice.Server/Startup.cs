@@ -49,7 +49,8 @@ namespace OpenIddictPractice.Server
                 {
                     options.SetAuthorizationEndpointUris("/connect/authorize")
                         .SetTokenEndpointUris("/connect/token")
-                        .SetLogoutEndpointUris("/connect/logout");
+                        .SetLogoutEndpointUris("/connect/logout")
+                        .SetUserinfoEndpointUris("/connect/userinfo");
 
                     options.AllowClientCredentialsFlow()
                         .AllowAuthorizationCodeFlow();
@@ -63,7 +64,8 @@ namespace OpenIddictPractice.Server
                         .EnableStatusCodePagesIntegration()
                         .EnableAuthorizationEndpointPassthrough()
                         .EnableTokenEndpointPassthrough()
-                        .EnableLogoutEndpointPassthrough();
+                        .EnableLogoutEndpointPassthrough()
+                        .EnableUserinfoEndpointPassthrough();
 
                     options.DisableAccessTokenEncryption();
                 })
@@ -82,6 +84,11 @@ namespace OpenIddictPractice.Server
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder.SetIsOriginAllowed(_ => true)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
 
             app.UseRouting();
 
