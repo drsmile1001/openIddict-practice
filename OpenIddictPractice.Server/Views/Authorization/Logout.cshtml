@@ -1,0 +1,29 @@
+@using Microsoft.Extensions.Primitives
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Log out</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <h1>Log out</h1>
+    <p>Are you sure you want to sign out?</p>
+
+    <form asp-controller="Authorization" asp-action="Logout" method="post">
+        @* Flow the request parameters so they can be received by the LogoutPost action: *@
+        @foreach (var parameter in Context.Request.HasFormContentType ?
+        (IEnumerable<KeyValuePair<string, StringValues>>)Context.Request.Form : Context.Request.Query)
+        {
+            <input type="hidden" name="@parameter.Key" value="@parameter.Value" />
+        }
+        <input name="Confirm" type="submit" value="Yes" />
+    </form>
+
+</body>
+
+</html>

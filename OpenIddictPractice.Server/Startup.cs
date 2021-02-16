@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Sqlite;
 using OpenIddictPractice.Server.Entities;
 using Microsoft.AspNetCore.Identity;
 using static OpenIddict.Abstractions.OpenIddictConstants;
@@ -54,7 +48,8 @@ namespace OpenIddictPractice.Server
                 .AddServer(options =>
                 {
                     options.SetAuthorizationEndpointUris("/connect/authorize")
-                        .SetTokenEndpointUris("/connect/token");
+                        .SetTokenEndpointUris("/connect/token")
+                        .SetLogoutEndpointUris("/connect/logout");
 
                     options.AllowClientCredentialsFlow()
                         .AllowAuthorizationCodeFlow();
@@ -67,7 +62,8 @@ namespace OpenIddictPractice.Server
                     options.UseAspNetCore()
                         .EnableStatusCodePagesIntegration()
                         .EnableAuthorizationEndpointPassthrough()
-                        .EnableTokenEndpointPassthrough();
+                        .EnableTokenEndpointPassthrough()
+                        .EnableLogoutEndpointPassthrough();
 
                     options.DisableAccessTokenEncryption();
                 })
