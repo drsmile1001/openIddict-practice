@@ -44,6 +44,68 @@ namespace OpenIddictPractice.Server
                 });
             }
 
+            if (await manager.FindByClientIdAsync("mvc") == null)
+            {
+                await manager.CreateAsync(new OpenIddictApplicationDescriptor
+                {
+                    ClientId = "mvc",
+                    ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
+                    ConsentType = ConsentTypes.Explicit,
+                    DisplayName = "MVC client application",
+                    PostLogoutRedirectUris =
+                    {
+                        new Uri("https://localhost:44338/signout-callback-oidc")
+                    },
+                    RedirectUris =
+                    {
+                        new Uri("https://localhost:44338/signin-oidc")
+                    },
+                    Permissions =
+                    {
+                        Permissions.Endpoints.Authorization,
+                        Permissions.Endpoints.Logout,
+                        Permissions.Endpoints.Token,
+                        Permissions.GrantTypes.AuthorizationCode,
+                        Permissions.GrantTypes.RefreshToken,
+                        Permissions.ResponseTypes.Code,
+                        Permissions.Scopes.Email,
+                        Permissions.Scopes.Profile,
+                        Permissions.Scopes.Roles,
+                        Permissions.Prefixes.Scope + "demo_api"
+                    },
+                    Requirements =
+                    {
+                        Requirements.Features.ProofKeyForCodeExchange
+                    }
+                });
+            }
+
+            if (await manager.FindByClientIdAsync("debbuger", cancellationToken) == null)
+            {
+                var descriptor = new OpenIddictApplicationDescriptor
+                {
+                    ClientId = "debbuger",
+                    DisplayName = "Debbuger Application",
+                    PostLogoutRedirectUris = { new Uri("https://oidcdebugger.com/debug") },
+                    RedirectUris = { new Uri("https://oidcdebugger.com/debug") },
+                    Permissions =
+                    {
+                        Permissions.Endpoints.Authorization,
+                        Permissions.Endpoints.Logout,
+                        Permissions.Endpoints.Token,
+                        Permissions.GrantTypes.AuthorizationCode,
+                        Permissions.GrantTypes.RefreshToken,
+                        Permissions.ResponseTypes.Code,
+                        Permissions.Scopes.Email,
+                        Permissions.Scopes.Profile,
+                        Permissions.Scopes.Roles,
+                        Permissions.Prefixes.Scope + "demo_api"
+                    }
+                };
+
+                await manager.CreateAsync(descriptor, cancellationToken);
+            }
+
             if (!context.Users.Any())
             {
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();

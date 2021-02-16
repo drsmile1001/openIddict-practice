@@ -1,0 +1,33 @@
+@using Microsoft.Extensions.Primitives
+@using OpenIddictPractice.Server.ViewModels.Authorization
+@model AuthorizeViewModel
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Authorization</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <h1>Authorization</h1>
+    <p>Do you want to grant <strong>@Model.ApplicationName</strong> access to your data? (scopes requested:
+        @Model.Scope)</p>
+    <form asp-controller="Authorization" asp-action="Authorize" method="post">
+        @* Flow the request parameters so they can be received by the Accept/Reject actions: *@
+        @foreach (var parameter in Context.Request.HasFormContentType ?
+        (IEnumerable<KeyValuePair<string, StringValues>>)Context.Request.Form : Context.Request.Query)
+        {
+            <input type="hidden" name="@parameter.Key" value="@parameter.Value" />
+        }
+
+        <input name="submit.Accept" type="submit" value="Yes" />
+        <input name="submit.Deny" type="submit" value="No" />
+    </form>
+
+</body>
+
+</html>
